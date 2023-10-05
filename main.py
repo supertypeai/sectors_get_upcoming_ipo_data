@@ -25,17 +25,13 @@ chrome_options = Options()
 options = [
     "--headless",
     f"--user-agent={user_agent}"
-    # "--disable-gpu",
-    # "--window-size=1920,1200",
-    # "--disable-extensions",
-    # "--no-sandbox",
-    # "--disable-dev-shm-usage"
 ]
 for option in options:
     chrome_options.add_argument(option)
 
 # driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
-driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version='117.0.5938.149').install()),options=chrome_options)
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version='117.0.5938.149').install()),options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 
 # driver = webdriver.Chrome(service=chrome_service)
 wait = WebDriverWait(driver, 10)
