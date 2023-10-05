@@ -10,11 +10,11 @@ from selenium.webdriver.chrome.service import Service
 import pandas as pd
 from datetime import datetime
 
-chrome_service = Service(ChromeDriverManager().install())
-driver = webdriver.Chrome(service=chrome_service)
-chrome_options = Options()
+# chrome_service = Service(ChromeDriverManager().install())
+# driver = webdriver.Chrome(service=chrome_service)
+# chrome_options = Options()
 
-# chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
 # chrome_options = Options()
 # options = [
