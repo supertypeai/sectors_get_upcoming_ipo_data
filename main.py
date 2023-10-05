@@ -10,15 +10,8 @@ from selenium.webdriver.chrome.service import Service
 import pandas as pd
 from datetime import datetime
 import logging
-
-# Set the desired log level
 logging.basicConfig(level=logging.ERROR)
 
-# chrome_service = Service(ChromeDriverManager().install())
-# driver = webdriver.Chrome(service=chrome_service)
-# chrome_options = Options()
-
-# chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 chrome_options = Options()
@@ -29,11 +22,7 @@ options = [
 for option in options:
     chrome_options.add_argument(option)
 
-# driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version='117.0.5938.149').install()),options=chrome_options)
 driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
-
 wait = WebDriverWait(driver, 10)
 
 url = "https://e-ipo.co.id/en/ipo/closed"
