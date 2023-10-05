@@ -9,6 +9,10 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import pandas as pd
 from datetime import datetime
+import logging
+
+# Set the desired log level
+logging.basicConfig(level=logging.ERROR)
 
 # chrome_service = Service(ChromeDriverManager().install())
 # driver = webdriver.Chrome(service=chrome_service)
@@ -16,12 +20,13 @@ from datetime import datetime
 
 # chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 chrome_options = Options()
 options = [
-    "--headless"
+    "--headless",
+    f"--user-agent={user_agent}"
     # "--disable-gpu",
     # "--window-size=1920,1200",
-    # "--ignore-certificate-errors",
     # "--disable-extensions",
     # "--no-sandbox",
     # "--disable-dev-shm-usage"
