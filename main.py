@@ -22,7 +22,11 @@ options = [
 for option in options:
     chrome_options.add_argument(option)
 
+# run in  github action
 driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
+
+# run in local
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 wait = WebDriverWait(driver, 10)
 
 url = "https://e-ipo.co.id/en/ipo/closed"
