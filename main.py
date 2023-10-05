@@ -16,21 +16,21 @@ from datetime import datetime
 
 # chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
-# chrome_options = Options()
-# options = [
-#     "--headless",
-#     "--disable-gpu",
-#     "--window-size=1920,1200",
-#     "--ignore-certificate-errors",
-#     "--disable-extensions",
-#     "--no-sandbox",
-#     "--disable-dev-shm-usage"
-# ]
-# for option in options:
-#     chrome_options.add_argument(option)
+chrome_options = Options()
+options = [
+    "--headless"
+    # "--disable-gpu",
+    # "--window-size=1920,1200",
+    # "--ignore-certificate-errors",
+    # "--disable-extensions",
+    # "--no-sandbox",
+    # "--disable-dev-shm-usage"
+]
+for option in options:
+    chrome_options.add_argument(option)
 
 # driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
-driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version='117.0.5938.149').install()))
+driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version='117.0.5938.149').install()),options=chrome_options)
 
 # driver = webdriver.Chrome(service=chrome_service)
 wait = WebDriverWait(driver, 10)
