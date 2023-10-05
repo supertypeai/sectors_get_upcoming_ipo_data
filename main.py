@@ -14,7 +14,7 @@ from datetime import datetime
 # driver = webdriver.Chrome(service=chrome_service)
 # chrome_options = Options()
 
-chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+# chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
 # chrome_options = Options()
 # options = [
@@ -30,8 +30,9 @@ chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).in
 #     chrome_options.add_argument(option)
 
 # driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version='117.0.5938.149').install()))
 
-driver = webdriver.Chrome(service=chrome_service)
+# driver = webdriver.Chrome(service=chrome_service)
 wait = WebDriverWait(driver, 10)
 
 url = "https://e-ipo.co.id/en/ipo/closed"
