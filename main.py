@@ -30,10 +30,9 @@ for option in options:
     chrome_options.add_argument(option)
 
 # driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version='117.0.5938.149').install()),options=chrome_options)
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version='117.0.5938.149').install()),options=chrome_options)
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 
-# driver = webdriver.Chrome(service=chrome_service)
 wait = WebDriverWait(driver, 10)
 
 url = "https://e-ipo.co.id/en/ipo/closed"
