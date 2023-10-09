@@ -13,22 +13,23 @@ import logging
 logging.basicConfig(level=logging.ERROR)
 import time
 from bs4 import BeautifulSoup
+import translators as ts
 
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 chrome_options = Options()
-options = [
-    "--headless",
-    f"--user-agent={user_agent}"
-]
-for option in options:
-    chrome_options.add_argument(option)
+# options = [
+#     "--headless",
+#     f"--user-agent={user_agent}"
+# ]
+# for option in options:
+#     chrome_options.add_argument(option)
 
 # run in  github action
-driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
 
 # run in local
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 wait = WebDriverWait(driver, 10)
 
 url = "https://e-ipo.co.id/en/ipo/closed"
@@ -83,6 +84,10 @@ def extract_company_info():
     except Exception as e:
         print(f"Error extracting company info: {str(e)}")
         return {}
+    
+def translate_to_english(text):
+    translated_text = ts.translate_text(text, translator="google", from_language='id',to_language='en')
+    return translated_text
 
 
 company_info_list = []
@@ -117,7 +122,7 @@ result_df.rename(columns={
     'Sector': 'sector',
     'Subsector': 'sub_sector',
     'Line Of Business': 'line_of_business',
-    'Company Overview': 'company_overview',
+    'Company Overview': 'company_overview_id',
     'Address': 'address',
     'Website': 'website',
     'Number of shares offered': 'number_of_shares_offered',
@@ -127,5 +132,6 @@ result_df.rename(columns={
 }, inplace=True)
 
 result_df['number_of_shares_offered'] = result_df['number_of_shares_offered'].str.replace(' shares', '').str.replace(',', '', regex=True).astype(float)
+result_df['company_overview_eng'] = result_df['company_overview_id'].apply(translate_to_english)
 
 result_df.to_csv('upcoming_ipo.csv',index=False)
