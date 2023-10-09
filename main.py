@@ -17,18 +17,18 @@ from bs4 import BeautifulSoup
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 chrome_options = Options()
-# options = [
-#     "--headless",
-#     f"--user-agent={user_agent}"
-# ]
-# for option in options:
-#     chrome_options.add_argument(option)
+options = [
+    "--headless",
+    f"--user-agent={user_agent}"
+]
+for option in options:
+    chrome_options.add_argument(option)
 
 # run in  github action
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
 
 # run in local
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 wait = WebDriverWait(driver, 10)
 
 url = "https://e-ipo.co.id/en/ipo/closed"
