@@ -8,11 +8,12 @@ from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 logging.basicConfig(level=logging.ERROR)
 import time
 from bs4 import BeautifulSoup
+import re
 
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
