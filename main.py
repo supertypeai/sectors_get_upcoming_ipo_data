@@ -18,18 +18,18 @@ import translators as ts
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 chrome_options = Options()
-# options = [
-#     "--headless",
-#     f"--user-agent={user_agent}"
-# ]
-# for option in options:
-#     chrome_options.add_argument(option)
+options = [
+    "--headless",
+    f"--user-agent={user_agent}"
+]
+for option in options:
+    chrome_options.add_argument(option)
 
 # run in  github action
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
 
 # run in local
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 wait = WebDriverWait(driver, 10)
 
 url = "https://e-ipo.co.id/en/ipo/closed"
@@ -121,7 +121,7 @@ result_df.drop(columns='Ticker Code', inplace=True)
 result_df.rename(columns={
     'Sector': 'sector',
     'Subsector': 'sub_sector',
-    'Line Of Business': 'line_of_business',
+    'Line Of Business': 'line_of_business_id',
     'Company Overview': 'company_overview_id',
     'Address': 'address',
     'Website': 'website',
@@ -132,6 +132,9 @@ result_df.rename(columns={
 }, inplace=True)
 
 result_df['number_of_shares_offered'] = result_df['number_of_shares_offered'].str.replace(' shares', '').str.replace(',', '', regex=True).astype(float)
-result_df['company_overview_eng'] = result_df['company_overview_id'].apply(translate_to_english)
+result_df['company_overview'] = result_df['company_overview_id'].apply(translate_to_english)
+result_df['line_of_business'] = result_df['line_of_business_id'].apply(translate_to_english)
+result_df.drop(columns=['line_of_business_id','company_overview_id','status'], inplace=True)
+result_df = result_df[['ticker_code','company','listing_date','price','funded_in_idr','sector','sub_sector','line_of_business','company_overview','address','website','number_of_shares_offered','percent_of_total_shares','participant_admin','underwriter']]
 
 result_df.to_csv('upcoming_ipo.csv',index=False)
