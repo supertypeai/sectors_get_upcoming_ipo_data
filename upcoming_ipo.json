@@ -1,0 +1,36 @@
+[
+    {
+        "ticker_code": "KOKA",
+        "company": "PT Koka Indonesia Tbk",
+        "listing_date": "2023-10-11",
+        "price": 128.0,
+        "funded_in_idr": 91562624000.0,
+        "sector": "Infrastructures",
+        "sub_sector": "Heavy Constructions & Civil Engineering",
+        "line_of_business": "Construction services for industrial buildings, civil buildings and residential buildings",
+        "company_overview": "PT Koka Indonesia Tbk (\"Company\") is a limited liability company established in 2011 and is engaged in the general contractor of construction projects, mechanical engineering, geotechnical engineering, interior design, and furniture. The Company has high qualifications in the field of building construction, factory industry construction, and bridge & tunnel, where the Company has carried out a series of investment and construction engineering projects in Indonesia. For more than 10 (ten) years, the Company has worked on more than 100 projects in Indonesia, where in carrying out its business activities the Company implements a quality management system, occupational health, safety management system based on ISO 9001, ISO 14001, and OHSAS 18001 standards",
+        "address": "Jl. Sultan Iskandar Muda, No. 7, Lt. 3, Kebayoran Lama, Jakarta Selatan 12240",
+        "website": "https://koka.co.id/en/beranda-en/",
+        "number_of_shares_offered": 715333000.0,
+        "percent_of_total_shares": "25",
+        "participant_admin": "AI - UOB KAY HIAN SEKURITAS",
+        "underwriter": "AI - UOB KAY HIAN SEKURITAS, HD - KGI SEKURITAS INDONESIA"
+    },
+    {
+        "ticker_code": "LOPI",
+        "company": "PT Logisticsplus International Tbk",
+        "listing_date": "2023-10-11",
+        "price": 100.0,
+        "funded_in_idr": 30000000000.0,
+        "sector": "Transportation & Logistic",
+        "sub_sector": "Logistics & Deliveries",
+        "line_of_business": "Engaged in transportation services (freight forwarding)",
+        "company_overview": "The Company is a company engaged in the field of freight forwarding services that serve domestic and foreign markets. The company is located at Sav Building Jl. POLRI KAVLING No. 20, Jagakarsa, South Jakarta 12620. Established in 2013, the company began operational activities in 2016 with 2 trucks, with a total of only 3 companies. Until now, the Company continues to develop its business to have more than 20 customers with an increase in fleet both owned by itself and rent. The Company is a company resulting from collaboration between national entrepreneurs who are experts in the field of logistics/shipping services with children's logistics companies in Indonesia . This special relationship makes the company get a privilege to use the logistics plus Inc. network headquartered in America and has a representative office in nearly 180 countries. When the company gets a request from customers who want to send goods from Indonesia abroad or vice versa it can utilize the international network. The company also serves the management of customs services, both for export and import purposes and is currently serving warehousing services which include: packaging, storage, sorting goods and labeling., Over the years the company has experienced in carrying out various kinds of shipping goods both inside and in overseas and helping every customer needs in distributing their goods, including: medical devices, oil drilling equipment, oil purification equipment, telecommunications equipment, train transportation, food, power plants, and also help packaging, storing customer products, and serving services Customs documentation management.",
+        "address": "SAV Building\nJl. Kavling Polri No. 20\nJagakarsa, Jakarta Selatan 12620, Indonesia\n",
+        "website": "https://www.logisticsplus.co.id",
+        "number_of_shares_offered": 300000000.0,
+        "percent_of_total_shares": "27.27",
+        "participant_admin": "SA - ELIT SUKSES SEKURITAS",
+        "underwriter": "SA - ELIT SUKSES SEKURITAS"
+    }
+]

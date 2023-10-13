@@ -8,12 +8,13 @@ from webdriver_manager.core.os_manager import ChromeType
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 logging.basicConfig(level=logging.ERROR)
 import time
 from bs4 import BeautifulSoup
 import translators as ts
+import json
 
 
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
@@ -26,10 +27,10 @@ for option in options:
     chrome_options.add_argument(option)
 
 # run in  github action
-driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
+# driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
 
 # run in local
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
 wait = WebDriverWait(driver, 10)
 
 url = "https://e-ipo.co.id/en/ipo/closed"
@@ -91,50 +92,59 @@ def translate_to_english(text):
 
 
 company_info_list = []
-for index, row in df.iterrows():
-    try:
-        url = "https://e-ipo.co.id/en/ipo/closed"
-        driver.get(url)
 
-        company_link = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, row['company'])))
-        company_link.click()
+try: 
+    for index, row in df.iterrows():
+        try:
+            url = "https://e-ipo.co.id/en/ipo/closed"
+            driver.get(url)
 
-        more_info_button = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'More Info')))
-        more_info_button.click()
+            company_link = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, row['company'])))
+            company_link.click()
 
-        company_info = extract_company_info()
-        company_info_list.append(company_info)
+            more_info_button = wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'More Info')))
+            more_info_button.click()
 
-        time.sleep(5)
+            company_info = extract_company_info()
+            company_info_list.append(company_info)
 
-    except Exception as e:
-        print(f"Error processing {row['company']}: {str(e)}")
+            time.sleep(5)
 
-driver.quit()
+        except Exception as e:
+            print(f"Error processing {row['company']}: {str(e)}")
 
-detail_df = pd.DataFrame(company_info_list)
+    driver.quit()
 
-result_df = pd.merge(df, detail_df, left_on='ticker_code', right_on='Ticker Code', how='inner')
+    detail_df = pd.DataFrame(company_info_list)
 
-result_df.drop(columns='Ticker Code', inplace=True)
+    result_df = pd.merge(df, detail_df, left_on='ticker_code', right_on='Ticker Code', how='inner')
 
-result_df.rename(columns={
-    'Sector': 'sector',
-    'Subsector': 'sub_sector',
-    'Line Of Business': 'line_of_business_id',
-    'Company Overview': 'company_overview_id',
-    'Address': 'address',
-    'Website': 'website',
-    'Number of shares offered': 'number_of_shares_offered',
-    "% of Total Shares": 'percent_of_total_shares',
-    'Participant Admin': 'participant_admin',
-    'Underwriter(s)': 'underwriter'
-}, inplace=True)
+    result_df.drop(columns='Ticker Code', inplace=True)
 
-result_df['number_of_shares_offered'] = result_df['number_of_shares_offered'].str.replace(' shares', '').str.replace(',', '', regex=True).astype(float)
-result_df['company_overview'] = result_df['company_overview_id'].apply(translate_to_english)
-result_df['line_of_business'] = result_df['line_of_business_id'].apply(translate_to_english)
-result_df.drop(columns=['line_of_business_id','company_overview_id','status'], inplace=True)
-result_df = result_df[['ticker_code','company','listing_date','price','funded_in_idr','sector','sub_sector','line_of_business','company_overview','address','website','number_of_shares_offered','percent_of_total_shares','participant_admin','underwriter']]
+    result_df.rename(columns={
+        'Sector': 'sector',
+        'Subsector': 'sub_sector',
+        'Line Of Business': 'line_of_business_id',
+        'Company Overview': 'company_overview_id',
+        'Address': 'address',
+        'Website': 'website',
+        'Number of shares offered': 'number_of_shares_offered',
+        "% of Total Shares": 'percent_of_total_shares',
+        'Participant Admin': 'participant_admin',
+        'Underwriter(s)': 'underwriter'
+    }, inplace=True)
 
-result_df.to_csv('upcoming_ipo.csv',index=False)
+    result_df['number_of_shares_offered'] = result_df['number_of_shares_offered'].str.replace(' shares', '').str.replace(',', '', regex=True).astype(float)
+    result_df['company_overview'] = result_df['company_overview_id'].apply(translate_to_english)
+    result_df['line_of_business'] = result_df['line_of_business_id'].apply(translate_to_english)
+    result_df.drop(columns=['line_of_business_id','company_overview_id','status'], inplace=True)
+    result_df = result_df[['ticker_code','company','listing_date','price','funded_in_idr','sector','sub_sector','line_of_business','company_overview','address','website','number_of_shares_offered','percent_of_total_shares','participant_admin','underwriter']]
+    result_df['listing_date'] = result_df['listing_date'].dt.strftime('%Y-%m-%d')
+    upcoming_ipo_json = result_df.to_dict(orient='records')
+
+except Exception as e:
+    print(f"An exception occurred: {str(e)}")
+    upcoming_ipo_json = []
+
+with open('upcoming_ipos.json', 'w') as json_file:
+    json.dump(upcoming_ipo_json, json_file, indent=4)
