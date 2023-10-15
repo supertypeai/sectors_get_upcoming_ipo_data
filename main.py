@@ -35,7 +35,8 @@ try:
     print("driver based on ChromeType.CHROMIUM is working")
 except:
     # specify the driver version ( sometimes ChromeType.CHROMIUM install the latest version that not match with chrome version, so we need to hardcode the stable one )
-    driver_ver = "117.0.5938.0"
+    # driver_ver = "117.0.5938.0"
+    driver_ver = "118.0.5993.70"
     driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version = driver_ver).install()),options=chrome_options)
     driver.get(url)
     print(f"driver version {driver_ver} is working")
