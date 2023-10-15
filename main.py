@@ -28,23 +28,16 @@ for option in options:
 
 url = "https://e-ipo.co.id/en/ipo/closed"
 
-# run in  github action
 try: 
+    # run in  github action
     driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
     driver.get(url)
     print("driver based on ChromeType.CHROMIUM is working")
 except:
-    # specify the driver version ( sometimes ChromeType.CHROMIUM install the latest version that not match with chrome version, so we need to hardcode the stable one )
-    # driver_ver = "117.0.5938.0"
-    # driver_ver = "118.0.5993.70"
-    # driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version = driver_ver).install()),options=chrome_options)
+    # run in local
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
     driver.get(url)
-    # print(f"driver version {driver_ver} is working")
-    print(f"driver version is working")
-
-# run in local
-# driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
+    print(f"driver is working")
 
 wait = WebDriverWait(driver, 10)
 
@@ -63,7 +56,7 @@ df['price'] = df['price'].apply(lambda x: x.replace(',', '') if ',' in x else x)
 df['funded_in_idr'] = df['funded_in_idr'].apply(lambda x: x.replace(',', '') if ',' in x else x).astype(float)
 
 df['listing_date'] = pd.to_datetime(df['listing_date'], format='%d-%m-%Y')
-today_date = datetime.now().date() - timedelta(5)
+today_date = datetime.now().date()
 df = df[df['listing_date'].dt.date > today_date]
 
 def extract_company_info():
