@@ -26,15 +26,24 @@ options = [
 for option in options:
     chrome_options.add_argument(option)
 
+url = "https://e-ipo.co.id/en/ipo/closed"
+
 # run in  github action
-driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
+try: 
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()),options=chrome_options)
+    driver.get(url)
+    print("driver based on ChromeType.CHROMIUM is working")
+except:
+    # specify the driver version ( sometimes ChromeType.CHROMIUM install the latest version that not match with chrome version, so we need to hardcode the stable one )
+    driver_ver = "117.0.5938.0"
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version = driver_ver).install()),options=chrome_options)
+    driver.get(url)
+    print(f"driver version {driver_ver} is working")
 
 # run in local
 # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
-wait = WebDriverWait(driver, 10)
 
-url = "https://e-ipo.co.id/en/ipo/closed"
-driver.get(url)
+wait = WebDriverWait(driver, 10)
 
 table_element = wait.until(EC.visibility_of_element_located((By.XPATH, '//*[@id="w0"]/div[1]/table')))
 table = driver.find_element(By.XPATH, '//*[@id="w0"]/div[1]/table')
@@ -51,7 +60,7 @@ df['price'] = df['price'].apply(lambda x: x.replace(',', '') if ',' in x else x)
 df['funded_in_idr'] = df['funded_in_idr'].apply(lambda x: x.replace(',', '') if ',' in x else x).astype(float)
 
 df['listing_date'] = pd.to_datetime(df['listing_date'], format='%d-%m-%Y')
-today_date = datetime.now().date()
+today_date = datetime.now().date() - timedelta(5)
 df = df[df['listing_date'].dt.date > today_date]
 
 def extract_company_info():
@@ -146,5 +155,5 @@ except Exception as e:
     print(f"An exception occurred: {str(e)}")
     upcoming_ipo_json = []
 
-with open('upcoming_ipos.json', 'w') as json_file:
+with open('upcoming_ipo.json', 'w') as json_file:
     json.dump(upcoming_ipo_json, json_file, indent=4)
