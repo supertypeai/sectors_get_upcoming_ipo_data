@@ -1,1 +1,19 @@
-[]
+[
+    {
+        "ticker_code": "UDNG",
+        "company": "PT Agro Bahari Nusantara Tbk",
+        "listing_date": "2023-10-31",
+        "price": 100.0,
+        "funded_in_idr": 50000000000.0,
+        "sector": "Consumer Non-Cyclicals",
+        "sub_sector": "Fish, Meat, & Poultry",
+        "line_of_business": "Engaged in the field of shrimp pond cultivation",
+        "company_overview": "The Company is engaged in the field of vannamei shrimp cultivation (Litopenaeus vannamei). The company has succeeded in developing its business from 6 ponds to mobilize 14 intensive and super-intensive cultivation ponds. Since 2019, the company has produced more than 400 tons of Vannamei shrimp to meet the needs of exports and national food needs. In carrying out its business, the Company puts forward the science and statistics approach in carrying out operational / production activities. With an analysis carried out continuously, the Company can reduce the risk of crop failure from diseases / weather which generally hit the cultivation process. At present the company's main assets consist of 10 intensive shrimp ponds/ponds, 4 Super Intensive Shrimp Ponds/Ponds, 3 Tendon Ponds, 4 Waste Water Treatment Ponds (WWTPs), as well as supporting equipment such as aerators (waterwheels), pumps, etc. -other.",
+        "address": "Ruko Shibuya Unit SHC 012 \u2013 PIK 2 Jl. Marina Indah Raya No.1 Kel. Lemo, Kec. Teluknaga Tangerang \u2013 Banten 15510",
+        "website": "https://abn.farm/",
+        "number_of_shares_offered": 500000000.0,
+        "percent_of_total_shares": "28.57",
+        "participant_admin": "EP - MNC SEKURITAS",
+        "underwriter": "EP - MNC SEKURITAS, BQ - KOREA INVESTMENT AND SEKURITAS INDONESIA"
+    }
+]
