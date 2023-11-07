@@ -1,1 +1,53 @@
-[]
+[
+    {
+        "ticker_code": "MSTI",
+        "company": "PT Mastersystem Infotama Tbk.",
+        "listing_date": "2023-11-08",
+        "price": 1355.0,
+        "funded_in_idr": 637965978000.0,
+        "sector": "Technology",
+        "sub_sector": "IT Services & Consulting",
+        "line_of_business": "Solution, Integration and Maintenance of Information Technology Systems",
+        "company_overview": "The Company is a leading system integration service provider in Indonesia with an operating experience of more than 29 years. The company offers a variety of information and communication technology (\"ICT\") solutions to customers by integrating various components of hardware, software, networks, and communication into a cohesive and functional system, so that it allows collaboration and interaction without obstacles between the technology system diverse., As a leading system integration service provider company, the Company provides comprehensive services for customers by planning, designing, implementing and optimizing ICT infrastructure and offering innovative solutions that support the achievement of efficiency, scalability and productivity that increases, so that customers can achieve growth in business activities sustainable. Included in the innovative solutions that exist in the Company's service portfolio including Data Center and Cloud Infrastruure, Enterprise Collaboration, Digital Business Management, Big Data and Analytics, and Adaptive Security Architecture. Based on the Research Study Report on IT in Indonesia issued by Euromonitor in August 2023 (\"Euromonitor Report\"), the Company is the third largest IT solution provider company in terms of income in 2022 with a market share of 6.9%., The Company also provides services managed and operated the IT system (managed services) through a subscription model of certain standard service subsets that are agreed upon in a certain period based on a service level agreement (SLA) to enable customers to avoid large capital expenditure in advance. Included in this service is a comprehensive cloud solution to modernize its customer IT infrastructure, help migration of applications and data to cloud and build analytical solutions in the data platform in the cloud. The Company also offers after -sales service packages in the form of post and maintenance services (service and maintenance) certain aspects of IT infrastructure in the form of maintenance packages to overcome the problems that arise post -implementation and periodic inspection to ensure the system runs well, as a system integration service provider Which integrates various components and technologies from various different principles for customers in the Indonesian market, the company is currently an important partner of various famous ICT principles, including Cisco, Hewlett Packard (HP), F5, VMware and Cludera. The company is also a partner of the world famous cloud platform, such as Amazon Web Services (\"AWS\") and Google Cloud Platform (\"GCP\"), which has built on-Premise data center in Indonesia, as a reseller who also provides services and maintenance and maintenance Managed Services for Cloud customers in Indonesia. In addition, the company also developed its own intellectual property (IP) related to Enterprise Networking and Collaboration technology.",
+        "address": "Gedung Sudirman 7-8 Tower I Lt.25\nJl. Jend. Sudirman Kav. 7-8\nJakarta Pusat 10220",
+        "website": "https://www.mastersystem.co.id/",
+        "number_of_shares_offered": 470823600.0,
+        "percent_of_total_shares": "15",
+        "participant_admin": "PD - INDO PREMIER SEKURITAS",
+        "underwriter": "PD - INDO PREMIER SEKURITAS, ZP - MAYBANK SEKURITAS INDONESIA"
+    },
+    {
+        "ticker_code": "IKPM",
+        "company": "PT Ikapharmindo Putramas Tbk",
+        "listing_date": "2023-11-08",
+        "price": 165.0,
+        "funded_in_idr": 55593862500.0,
+        "sector": "Healthcare",
+        "sub_sector": "Pharmaceuticals",
+        "line_of_business": "Engaged in the business of the pharmaceutical industry business, personal care",
+        "company_overview": "Starting from the pharmacy business, PT. Ikapharmindo Putramas began operating on May 18, 1978 with the opening of its main factory in the Pulogadung area on an area of 11,700 m2. At this time, the factory has been developed and consists of the Production, Research and Development Laboratory (R&D), Quality Control (QA and QC), Warehousing and Head Office for Department of Marketing and Export. Supported by the standardization of CPOB production facilities for sterile, farm, OT, OT, OT, OT, Cosmetics, and Cosmetics (Good Manufacturing Practice) certification from BPOM, assisted by the SAP technology system, to ensure every product produced for the sale of the Company and the produced For third parties (contract manufacturing) meet quality standards for local and export needs. In 2016 the company opened its second factory in West Java above the land area of 25,000m2 which was built to support the development of milk bottled products and baby Baby Huki. , In line with the company's vision to become a \"pharmaceutical and personal care company managed by a professional team that is dedicated to professionalism, commitment, and loyalty. Supported by modern technology, producing quality, innovative, meeting the demands of local and global markets, the company intends to expand production facilities in West Java to support the sale of personal care products and start the cultivation of international markets for hair care products. , The company is trying to always innovate and develop its products based on the Company's motto \"The spirit to nose on healthy life\" (passion for healthy living). All of the company's products that have been known or will be launched have an element of \"health\", with Unique Selling Point that supports consumers to live healthy, some of the success of the company's business comes from its ability to provide products to people in various generations. Each division of the Company has a major product with a different consumer focus, the pharmaceutical division and OTC (over the counter) has prescription and vitamins for patients from children to old age, hair and baby care divisions provide products with brands known by millennials. The Company will continue to develop its product portfolios convincing the company's brands will be known and trusted not only by the current generation, but the entire next generation.",
+        "address": "Kl. Pulogadung Raya No.29\nKawasan Industri Pulogadung\nJakarta Timur, 13930 Indonesia",
+        "website": "https://www.ikapharmindo.com",
+        "number_of_shares_offered": 336932500.0,
+        "percent_of_total_shares": "20",
+        "participant_admin": "TP - OCBC SEKURITAS INDONESIA",
+        "underwriter": "TP - OCBC SEKURITAS INDONESIA"
+    },
+    {
+        "ticker_code": "RGAS",
+        "company": "PT Kian Santang Muliatama Tbk",
+        "listing_date": "2023-11-08",
+        "price": 120.0,
+        "funded_in_idr": 40104000000.0,
+        "sector": "Energy ",
+        "sub_sector": "Oil, Gas & Coal Equipment & Services",
+        "line_of_business": "Big trading of equipment and other equipment, mechanical installation, gas installation",
+        "company_overview": "PT Kian Santang Muliatama Tbk (\"Company\"), domiciled in Bekasi, was established based on Deed of Establishment No. 634 dated November 28, 2018 is a company engaged in the gas industry supporting services, including the provision of products (spare parts) to engineering, procurement and construction (EPC). Headquartered in the city of Bekasi, West Java, KSM was established in 2018 and managed by individuals who are experienced in the oil & gas sector, especially in the gas infrastructure. In carrying out its business activities, the Company is always guided by the vision and mission that has been set, which is also a form of the aspirations of the founder of the Company. , The company's main activities are divided into 2 (two) segments, namely products and services. Products consist of sales of products such as regulators, transition fittings, converter kits, and others. As for the service segment, consisting of construction services (such as the construction of gasing and regulating station, regulator sector) and other services. The company's business activities that are actually run today are the large trading of equipment and other equipment, mechanical installations, oil and gas installations.",
+        "address": "Jl. Wibawa Mukti II Perum Telkom Satwika Permai Blok A5 No. 8, RT. 009 RW. 009 Kel. Jatiluhur, Kec. Jatiasih, Bekasi, 17425",
+        "website": "https://kianmulia.com/",
+        "number_of_shares_offered": 334200000.0,
+        "percent_of_total_shares": "22.9",
+        "participant_admin": "AO - ERDIKHA ELIT SEKURITAS",
+        "underwriter": "AO - ERDIKHA ELIT SEKURITAS"
+    }
+]
