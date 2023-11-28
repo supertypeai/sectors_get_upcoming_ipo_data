@@ -1,1 +1,19 @@
-[]
+[
+    {
+        "ticker_code": "AYAM",
+        "company": "PT Janu Putra Sejahtera Tbk",
+        "listing_date": "2023-11-30",
+        "price": 100.0,
+        "funded_in_idr": 80000000000.0,
+        "sector": "Consumer Non-Cyclicals",
+        "sub_sector": "Fish, Meat, & Poultry",
+        "line_of_business": "Engaged in the field of animal husbandry and chicken slaughterhouses",
+        "company_overview": "PT Janu Putra Sejahtera Tbk. (\"Company\") is a company that has the main business activities and is engaged in chicken farms and chicken slaughterhouses since it was established until now. Products and services sold by the company are Doc Parent Stock, Doc Broiler Chicken, Live Chicken, Chicken Carcass, Commercial Eggs, and Chicken Slaughterhouse Services. For now, the company has 2 locations of the Breeding Parent Stock home located in Ngawis and Purbalingga. Meanwhile, broiler chicken farms are located in Klerong and Sleman.",
+        "address": "Ruko Casa Grande No.35, Jl. Ringroad Utara, Maguwoharjo, Depok, Sleman, D.I Yogyakarta ",
+        "website": "https://januputrasejahtera.com/",
+        "number_of_shares_offered": 800000000.0,
+        "percent_of_total_shares": "20",
+        "participant_admin": "AI - UOB KAY HIAN SEKURITAS",
+        "underwriter": "AI - UOB KAY HIAN SEKURITAS"
+    }
+]
