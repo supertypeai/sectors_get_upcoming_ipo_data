@@ -1,1 +1,36 @@
-[]
+[
+    {
+        "ticker_code": "CGAS",
+        "company": "PT Citra Nusantara Gemilang Tbk",
+        "listing_date": "2024-01-08",
+        "price": 338.0,
+        "funded_in_idr": 179623002000.0,
+        "sector": "Energy ",
+        "sub_sector": "Oil & Gas Storage & Distribution",
+        "line_of_business": "Natural Gas Trading and Distribution",
+        "company_overview": "The Company was established based on the Law of the Republic of Indonesia domiciled in Bekasi Regency under the name PT Citra Nusantara Gemilang in accordance with Deed of Establishment No. 22 December 21, 2005 which was then amended by Deed of Amendment No. 13 September 11, 2006, both of them were made before Edi Priyono, SH, Notary in Jakarta, have been approved by the Minister of Law and Human Rights of the Republic of Indonesia with Decree No. W7.00990 HT.01.01-TH.2006 dated September 27, 2006, then registered in the Company List at the Bekasi Regency Company Registration Office No. 597/BH.10.07/X/2006 with No. TDP: 100715104398 dated October 4, 2006, and has been announced in the State Gazette of the Republic of Indonesia below No. 91 dated November 14, 2006, additional No. 11896 (\"Deed of Establishment\"). The company is known as a pioneer company that focuses on the development of compressed natural gas (CNG) in Indonesia through trading and natural gas distribution business activities that use the mode of transportation to areas that have not been reached by gas pipeline network with stable and safe gas pressure. This natural gas is used for industrial purposes, transportation, housing, and private power plants that use gas as a source of energy. Marketing is carried out by B2B (Business to Business) and B2C (Business to Consumer), targeting the industrial sector, transportation and also serving consultation services related to operational and maintenance of natural gas equipment. The Company is the parent of several subsidiaries, namely PT Citra Nusantara Energi ( CNE), PT CNG Hilir Raya (CHR), PT CNG Global (CNGLOBAL), and PT Cipta Rizqi Energi (CRE). Compressed distributor and trading activities of natural gas are also carried out by CNE and CHR. Cres that collaborate with BUMD Sindangkasih Multi Business, are engaged in the distribution of natural gas and their derivatives, as well as the development of supporting infrastructure such as Natural Gas Treatment. Meanwhile, CNGlobal provides gas equipment and construction services, which support trade and distribution activities with integrated services to meet customer needs. The Company and Subsidiary Distribution Network has reached various regions in Indonesia. The Company and its subsidiaries have a mother station in Palembang (South Sumatra), Cikarang (West Java), Sidoarjo (East Java) and will operate in Grobogan (Central Java). With a strategic plan to develop, the Company will expand its service scope by directing business development towards Liquefied Natural Gas (LNG) trade and distribution, besides CNG.",
+        "address": "Jl. Kalimalang No.126, Tegal Gede, Kelurahan Pasirsari, Kecamatan Cikarang Selatan, Kabupaten Bekasi, Provinsi Jawa Barat 17530 Indonesia",
+        "website": "https://cng.co.id/",
+        "number_of_shares_offered": 531429000.0,
+        "percent_of_total_shares": "30",
+        "participant_admin": "PO - PILARMAS INVESTINDO SEKURITAS",
+        "underwriter": "PO - PILARMAS INVESTINDO SEKURITAS"
+    },
+    {
+        "ticker_code": "ASLI",
+        "company": "PT Asri Karya Lestari Tbk",
+        "listing_date": "2024-01-05",
+        "price": 100.0,
+        "funded_in_idr": 125000000000.0,
+        "sector": "Infrastructures",
+        "sub_sector": "Heavy Constructions & Civil Engineering",
+        "line_of_business": "The Company is engaged in the field of general contractor, especially foundation work, erection, formwork",
+        "company_overview": "PT Asri Karya Lestari is a national company engaged in the general contractor. Experienced in development projects in Indonesia, especially in the work of foundation, erection, formwork, and road work. By applying science and technology that is increasingly advanced and developing. The Company has posted 15 years of experience in various projects both national strategic projects to private projects. As the business journey and development development, the Company developed a sub -business to support national development by optimizing business opportunities by acquiring PT Bumi Prima construction (engaged in the rental of heavy equipment, bridge civil building construction, flyover, fly over, and underpass) and PT Manyar Perkasa Mandiri (engaged in the batching plant industry) so that the business turnover carried out by the company covers upstream to downstream.",
+        "address": "Ruko Sentra Niaga Kalimalang B2 No3 Jl. Jend. Ahmad Yani, Bekasi, Jawa Barat 17144",
+        "website": "https://www.asrikaryalestari.co.id",
+        "number_of_shares_offered": 1250000000.0,
+        "percent_of_total_shares": "20",
+        "participant_admin": "XA - NH KORINDO SEKURITAS INDONESIA",
+        "underwriter": "XA - NH KORINDO SEKURITAS INDONESIA"
+    }
+]
