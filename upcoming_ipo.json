@@ -1,5 +1,22 @@
 [
     {
+        "ticker_code": "NICE",
+        "company": "PT Adhi Kartiko Pratama Tbk.",
+        "listing_date": "2024-01-09",
+        "price": 438.0,
+        "funded_in_idr": 532784952000.0,
+        "sector": "Basic Materials",
+        "sub_sector": "Diversified Metals & Minerals",
+        "line_of_business": "Moving in nickel ore mining",
+        "company_overview": "PT Adhi Kartiko Pratama Tbk (\"Company\") was established in 2008 as a company engaged in the field of nickel ore mining through exploration activities through the lateritic nickel project which is the main contributor in the global nickel ore industry. The company's mine is located in Lameruru Village, Langgikima District, Konawe Utara, Southeast Sulawesi, Indonesia, 180 km northwest of Kendari Regency, the location with abundant nickel resources and the most significant nickel extraction location. The Company's mine has a concession area of 1,975 hectares (ha) where the ownership and operation of the mining is carried out 100%. , The company's mining location has a strategic position in terms of providing several benefits for the implementation of the company's mining operations. The majority of mining locations, including the company's mine, are close to the coast, which allows the transportation of resources in a relatively close distance. The company's mining location is only 600 meters from the dock, which confirms the company's commitment for operational efficiency. In addition, the company's mine is easily accessible from the center of Kendari City, with a distance of about five hours from the city to the mine site. This accessibility emphasizes the ease and operational efficiency of the Company, the Company is committed to providing high -quality nickel ore for the company's customers. By focusing on sustainability, safety, and innovation, the Company seeks to become a responsible company and have a positive impact on the community in the company's territory operating. The company believes that the success achieved is the result of employee hard work and dedication, and the Company is proud of the commitment to the highest safety standards. The Company's operations are carried out in accordance with strict regulations, creating a safe, useful and satisfying work environment, and fostering the culture of innovation and collaboration that allows the company to remain at the forefront of the industry.",
+        "address": "Jalan Sorumba Nomor 80, Desa/Kelurahan Anaiwoi, Kec. Kadia, Kota Kendari,\nProvinsi Sulawesi Tenggara\nIndonesia - 93118\n",
+        "website": "https://www.akp.co.id",
+        "number_of_shares_offered": 1216404000.0,
+        "percent_of_total_shares": "20",
+        "participant_admin": "AI - UOB KAY HIAN SEKURITAS",
+        "underwriter": "AI - UOB KAY HIAN SEKURITAS, CP - KB VALBURY SEKURITAS, LG - TRIMEGAH SEKURITAS INDONESIA TBK."
+    },
+    {
         "ticker_code": "CGAS",
         "company": "PT Citra Nusantara Gemilang Tbk",
         "listing_date": "2024-01-08",
@@ -15,22 +32,5 @@
         "percent_of_total_shares": "30",
         "participant_admin": "PO - PILARMAS INVESTINDO SEKURITAS",
         "underwriter": "PO - PILARMAS INVESTINDO SEKURITAS"
-    },
-    {
-        "ticker_code": "ASLI",
-        "company": "PT Asri Karya Lestari Tbk",
-        "listing_date": "2024-01-05",
-        "price": 100.0,
-        "funded_in_idr": 125000000000.0,
-        "sector": "Infrastructures",
-        "sub_sector": "Heavy Constructions & Civil Engineering",
-        "line_of_business": "The Company is engaged in the field of general contractor, especially foundation work, erection, formwork",
-        "company_overview": "PT Asri Karya Lestari is a national company engaged in the general contractor. Experienced in development projects in Indonesia, especially in the work of foundation, erection, formwork, and road work. By applying science and technology that is increasingly advanced and developing. The Company has posted 15 years of experience in various projects both national strategic projects to private projects. As the business journey and development development, the Company developed a sub -business to support national development by optimizing business opportunities by acquiring PT Bumi Prima construction (engaged in the rental of heavy equipment, bridge civil building construction, flyover, fly over, and underpass) and PT Manyar Perkasa Mandiri (engaged in the batching plant industry) so that the business turnover carried out by the company covers upstream to downstream.",
-        "address": "Ruko Sentra Niaga Kalimalang B2 No3 Jl. Jend. Ahmad Yani, Bekasi, Jawa Barat 17144",
-        "website": "https://www.asrikaryalestari.co.id",
-        "number_of_shares_offered": 1250000000.0,
-        "percent_of_total_shares": "20",
-        "participant_admin": "XA - NH KORINDO SEKURITAS INDONESIA",
-        "underwriter": "XA - NH KORINDO SEKURITAS INDONESIA"
     }
 ]
