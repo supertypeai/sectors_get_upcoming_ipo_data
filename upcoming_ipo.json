@@ -1,1 +1,19 @@
-[]
+[
+    {
+        "ticker_code": "SMGA",
+        "company": "PT Sumber Mineral Global Abadi Tbk",
+        "listing_date": "2024-01-30",
+        "price": 105.0,
+        "funded_in_idr": 183750000000.0,
+        "sector": "Basic Materials",
+        "sub_sector": "Diversified Metals & Minerals",
+        "line_of_business": "Engaged in the field of large trade in nickel ore and coal",
+        "company_overview": "The company was founded in 2016 under the name PT Sumber Mineral Global Abadi, domiciled in South Jakarta. The Company is a company that runs its business activities in the field of nickel and coal trade for the domestic market in Indonesia, the Company is part of the business group of PT Sumber Global Energy Tbk (SGE) which is a coal trading company in the export and domestic market with a one -stop coal supplier system which is systematic from trading, transportation, to shipping activities. The Company holds three IUPs-OPK (Special Production Operations) respectively on behalf of the Company itself for the transport and sale of metal mineral commodities, coal commodities, and non-metal mineral commodities., Currently the Company is more focused on nickel and high-quality coal and coal with levels 1.5% - 1.9% for nickel and calories of 3,400 - 5,300 kka/kg (ARB) for coal. The strategy positions the company as a nickel and coal trader who has its own market segmentation. This is supported by the high demand for quality nickel and coal. The Company collaborates with the owner of the Production Operational Mining Business Permit (IUP-OP) and the Special Production Operation Mining Business Permit (IUP-OPK) to ensure the continuity of productivity and supply to the end-users, the Company indirectly runs a mining business through its participation in the subsidiary Namely PT Jasatama Mandiri Sukses (\"JMS\") which is engaged in the field of limestone mining. JMS was established in 2021, in 2021 JMS obtained an IUP for certain types of non -metal mineral commodities in the exploration activity, in this case the limestone for industry. JMS has received approval to increase the IUP to the production operation activity stage in July 2023 with a validity period of 20 years until July 2043. The stage of production operations includes construction activities, mining, processing and/or refining or development and/or utilization, as well as transportation and sales. , JMS mining activities are located in Bungku Pesisir District, Morowali Regency, Central Sulawesi Province with an area of 85.73 ha and based on the results of exploration that has been carried out by JMS, a limestone reserve (reserves) owned by JMS is currently 300,000,000 Tons with an estimated mining age of around 150 years.",
+        "address": "Graha BIP Lantai 2, Jl. Gatot Subroto Kav. 23, Jakarta Selatan 12930, Indonesia",
+        "website": "https://www.smgagroup.com",
+        "number_of_shares_offered": 1750000000.0,
+        "percent_of_total_shares": "20",
+        "participant_admin": "MI - VICTORIA SEKURITAS INDONESIA",
+        "underwriter": "MI - VICTORIA SEKURITAS INDONESIA"
+    }
+]
