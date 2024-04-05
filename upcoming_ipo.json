@@ -1,1 +1,22 @@
-[]
+[
+    {
+        "ticker_code": "ATLA",
+        "company": "PT Atlantis Subsea Indonesia Tbk",
+        "listing_date": "2024-04-16",
+        "price": 100.0,
+        "sector": "Energy ",
+        "number_of_shares_offered": 12000000.0,
+        "percent_of_total_shares": "19.36",
+        "funded_in_idr": 120000000000.0
+    },
+    {
+        "ticker_code": "MHKI",
+        "company": "PT Multi Hanna Kreasindo Tbk",
+        "listing_date": "2024-04-16",
+        "price": 160.0,
+        "sector": "Industrials",
+        "number_of_shares_offered": 7500000.0,
+        "percent_of_total_shares": "20",
+        "funded_in_idr": 120000000000.0
+    }
+]

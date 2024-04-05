@@ -1,0 +1,2 @@
+version 1 - sekarang harus login + captcha
+version 2 - working
