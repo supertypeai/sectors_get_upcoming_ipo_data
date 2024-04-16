@@ -51,9 +51,14 @@ for i in range(1,2):
         new_url = f"https://e-ipo.co.id{href}"
         with urllib.request.urlopen(url) as response:
             html_detail = response.read()
+            print(html_detail)
             soup = BeautifulSoup(html_detail, 'html.parser')
             page = soup.find("div", class_="panel-body panel-scroll")
-            result["percent_of_total_shares"].append(page.find_all("p")[-3].get_text())
+            try:
+                result["percent_of_total_shares"].append(page.find_all("p")[-3].get_text())
+            except:
+                result["percent_of_total_shares"].append(None)
+
 
 ipo = pd.DataFrame(result)
 ipo['number_of_shares_offered'] = ipo['number_of_shares_offered'].str.replace(' Lot', '').str.replace(',', '', regex=True).astype(float)
