@@ -31,7 +31,7 @@ for i in range(1,2):
     with urllib.request.urlopen(url) as response:
         html = response.read()
         print(html)
-    soup = BeautifulSoup(content, 'html.parser')
+    soup = BeautifulSoup(html, 'html.parser')
     names = []
     names_class = soup.find_all(class_="margin-left10 colorwhite")
     for name in names_class:
