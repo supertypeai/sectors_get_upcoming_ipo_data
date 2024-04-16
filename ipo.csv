@@ -1,3 +1,13 @@
 ticker_code,company,listing_date,price,sector,number_of_shares_offered,percent_of_total_shares,funded_in_idr
-ATLA,PT Atlantis Subsea Indonesia Tbk,2024-04-16,100.0,Energy ,12000000.0,19.36,120000000000.0
-MHKI,PT Multi Hanna Kreasindo Tbk,2024-04-16,160.0,Industrials,7500000.0,20,120000000000.0
+MHKI,PT Multi Hanna Kreasindo Tbk,2024-04-16,160.0,Industrials,7500000.0,,120000000000.0
+ATLA,PT Atlantis Subsea Indonesia Tbk,2024-04-16,100.0,Energy ,12000000.0,,120000000000.0
+AREA,PT Dunia Virtual Online Tbk,2024-04-01,131.0,Technology,5100000.0,,66810000000.0
+VISI,PT Satu Visi Putra Tbk,2024-02-27,120.0,Consumer Discretionary,6150000.0,,73800000000.0
+BAIK,PT Bersama Mencapai Puncak Tbk,2024-02-15,278.0,Energy,2250000.0,,62550000000.0
+HYGN,PT Ecocare Indo Pasifik Tbk,2024-02-13,145.0,Consumer Discretionary,5250000.0,,76125000000.0
+MEJA,PT Harta Djaya Karya Tbk,2024-02-12,103.0,Energy,4800000.0,,49440000000.0
+MKAP,PT Multikarya Asia Pasifik Raya Tbk,2024-02-12,115.0,Financials,6500000.0,,74750000000.0
+LIVE,PT Homeco Victoria Makmur Tbk,2024-02-12,148.0,Energy,8083500.0,,119635800000.0
+ALII,PT Ancara Logistics Indonesia Tbk,2024-02-07,272.0,Financials,31651600.0,,860923520000.0
+UNTD,PT Terang Dunia Internusa Tbk.,2024-02-07,240.0,Energy,16666667.0,,400000008000.0
+MPIX,PT Mitra Pedagang Indonesia Tbk,2024-02-07,268.0,Telecom,3125000.0,,83750000000.0
