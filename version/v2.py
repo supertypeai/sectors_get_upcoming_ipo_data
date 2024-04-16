@@ -1,21 +1,15 @@
+from selenium import webdriver
 from bs4 import BeautifulSoup
 import pandas as pd
+from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime
 import json
-import sys
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
-import urllib.request
-
-proxy_support = urllib.request.ProxyHandler({'http': 'http://brd-customer-hl_ef20981d-zone-web_unlocker_test:r8yjzk22g9ep@brd.superproxy.io:22225',
-                                             'https': 'http://brd-customer-hl_ef20981d-zone-web_unlocker_test:r8yjzk22g9ep@brd.superproxy.io:22225'})
-opener = urllib.request.build_opener(proxy_support)
-urllib.request.install_opener(opener)
 
 def convert_date(date_str):
     date_object = datetime.strptime(date_str, "%d %b %Y")
     return date_object.strftime("%Y-%m-%d")
 
+driver = webdriver.Chrome()
 result = {
     "ticker_code" : [],
     "company" : [],
@@ -25,12 +19,10 @@ result = {
     "number_of_shares_offered" : [],
     "percent_of_total_shares" : []
 }
-
 for i in range(1,2):
-    url = f'https://e-ipo.co.id/en/ipo/index?page={i}&per-page=12&query=&sort=-updated_at&status_id=5&view=list'
-    with urllib.request.urlopen(url) as response:
-        html = response.read()
-        print(html)
+    newlink = f"https://e-ipo.co.id/en/ipo/index?page={i}&per-page=12&query=&sort=-updated_at&status_id=5&view=list"
+    driver.get(newlink)
+    content = driver.page_source
     soup = BeautifulSoup(content, 'html.parser')
     names = []
     names_class = soup.find_all(class_="margin-left10 colorwhite")
@@ -49,19 +41,19 @@ for i in range(1,2):
     for button in buttons:
         href = button.get("href")
         new_url = f"https://e-ipo.co.id{href}"
-        with urllib.request.urlopen(url) as response:
-            html_detail = response.read()
-            soup = BeautifulSoup(html_detail, 'html.parser')
-            page = soup.find("div", class_="panel-body panel-scroll")
-            result["percent_of_total_shares"].append(page.find_all("p")[-3].get_text())
+        driver.get(new_url)
+        content = driver.page_source
+        soup = BeautifulSoup(content, 'html.parser')
+        page = soup.find("div", class_="panel-body panel-scroll")
+        result["percent_of_total_shares"].append(page.find_all("p")[-3].get_text())
 
 ipo = pd.DataFrame(result)
 ipo['number_of_shares_offered'] = ipo['number_of_shares_offered'].str.replace(' Lot', '').str.replace(',', '', regex=True).astype(float)
 ipo['price'] = ipo['price'].str.replace('IDR', '').str.replace("\xa0", "").str.replace(',', '', regex=True).astype(float)
 ipo['listing_date'] = ipo['listing_date'].apply(convert_date)
 ipo['listing_date'] = pd.to_datetime(ipo['listing_date'])
-# today_date = datetime.now()
-# ipo = ipo[ipo['listing_date'] > today_date]
+today_date = datetime.now()
+ipo = ipo[ipo['listing_date'] > today_date]
 ipo['listing_date'] = ipo['listing_date'].dt.strftime('%Y-%m-%d')
 ipo['funded_in_idr'] = ipo['number_of_shares_offered'] * ipo['price'] * 100
 
