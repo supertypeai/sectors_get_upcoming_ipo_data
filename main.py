@@ -60,8 +60,8 @@ ipo['number_of_shares_offered'] = ipo['number_of_shares_offered'].str.replace(' 
 ipo['price'] = ipo['price'].str.replace('IDR', '').str.replace("\xa0", "").str.replace(',', '', regex=True).astype(float)
 ipo['listing_date'] = ipo['listing_date'].apply(convert_date)
 ipo['listing_date'] = pd.to_datetime(ipo['listing_date'])
-# today_date = datetime.now()
-# ipo = ipo[ipo['listing_date'] > today_date]
+today_date = datetime.now()
+ipo = ipo[ipo['listing_date'] > today_date]
 ipo['listing_date'] = ipo['listing_date'].dt.strftime('%Y-%m-%d')
 ipo['funded_in_idr'] = ipo['number_of_shares_offered'] * ipo['price'] * 100
 
