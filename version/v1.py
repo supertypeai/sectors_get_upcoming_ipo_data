@@ -95,7 +95,6 @@ def translate_to_english(text):
     translated_text = ts.translate_text(text, translator="google", from_language='id',to_language='en')
     return translated_text
 
-
 company_info_list = []
 
 try: 
