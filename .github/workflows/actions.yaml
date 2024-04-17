@@ -44,6 +44,8 @@ jobs:
           pip install -r requirements.txt
           
       - name: execute py script 
+        env:
+          proxy: ${{ secrets.proxy }}
         run: python main.py
           
       - name: commit files
