@@ -19,24 +19,24 @@ jobs:
         with:
           python-version: '3.9' # install the python version needed
 
-      - name: Installed package list
-        run: apt list --installed
+      # - name: Installed package list
+      #   run: apt list --installed
 
-      - name: Remove Chrome
-        run: sudo apt purge google-chrome-stable
+      # - name: Remove Chrome
+      #   run: sudo apt purge google-chrome-stable
 
-      - name: Install Chrome
-        run: |
-          wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-          sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-          sudo apt update
-          sudo apt install google-chrome-stable
+      # - name: Install Chrome
+      #   run: |
+      #     wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+      #     sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+      #     sudo apt update
+      #     sudo apt install google-chrome-stable
 
-      - name: Remove default Chromium
-        run: sudo apt purge chromium-browser
+      # - name: Remove default Chromium
+      #   run: sudo apt purge chromium-browser
 
-      - name: Install a new Chromium
-        run: sudo apt install -y chromium-browser
+      # - name: Install a new Chromium
+      #   run: sudo apt install -y chromium-browser
 
       - name: install python packages
         run: |
