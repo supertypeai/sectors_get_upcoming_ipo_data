@@ -2,8 +2,7 @@ name: run main.py
 
 on:
   schedule:
-    - cron: '0 18 */3 * *' # At 18:00 on every 3rd day-of-month
-
+    - cron: '0 0 * * 1' # Every monday
   workflow_dispatch:
 
 
