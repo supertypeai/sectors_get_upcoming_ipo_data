@@ -104,7 +104,7 @@ try:
         result["company_overview_id"].append(company_info['Company Overview'])
         result["address"].append(company_info['Address'])
         result["website"].append(company_info['Website'])
-        result["percent_of_total_shares"].append(int(company_info['% of Total Shares']))
+        result["percent_of_total_shares"].append(float(company_info['% of Total Shares']))
         result["participant_admin"].append(company_info['Participant Admin'])
         result["underwriter"].append(company_info['Underwriter(s)'])
 

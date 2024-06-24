@@ -7,10 +7,16 @@ import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 import urllib.request
 
-proxy_support = urllib.request.ProxyHandler({'http': 'http://brd-customer-hl_ef20981d-zone-web_unlocker_test:r8yjzk22g9ep@brd.superproxy.io:22225',
-                                             'https': 'http://brd-customer-hl_ef20981d-zone-web_unlocker_test:r8yjzk22g9ep@brd.superproxy.io:22225'})
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+proxy = os.environ.get("proxy")
+
+proxy_support = urllib.request.ProxyHandler({'http': proxy,'https': proxy})
 opener = urllib.request.build_opener(proxy_support)
 urllib.request.install_opener(opener)
+
 
 def convert_date(date_str):
     date_object = datetime.strptime(date_str, "%d %b %Y")
