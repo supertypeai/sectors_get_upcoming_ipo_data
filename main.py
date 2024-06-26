@@ -115,7 +115,12 @@ try:
     ipo['line_of_business'] = ipo['line_of_business_id'].apply(translate_to_english)
     ipo.drop(columns=['line_of_business_id','company_overview_id'], inplace=True)
     ipo = ipo[['ticker_code','company','book_building_period','book_building_price_range','sector','sub_sector','line_of_business','company_overview','address','website','number_of_shares_offered','percent_of_total_shares','participant_admin','underwriter']]
-    ipo.to_csv("ipo.csv",index = False)
+
+    existing_ipo_data = pd.read_csv('https://raw.githubusercontent.com/supertypeai/sectors_get_upcoming_ipo_data/main/ipo.csv')
+    ipo_history_data = pd.concat([existing_ipo_data, ipo])
+    ipo_history_data.to_csv("ipo.csv",index = False)
+
+
     upcoming_ipo_json = ipo.to_dict(orient='records')
 
 except Exception as e:
