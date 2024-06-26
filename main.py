@@ -72,7 +72,8 @@ result = {
     "number_of_shares_offered" : [],
     "percent_of_total_shares": [],
     "participant_admin": [],
-    "underwriter": []
+    "underwriter": [],
+    "updated_on": [],
 }
 
 try:
@@ -123,9 +124,9 @@ try:
     ipo_history_data = pd.concat([existing_ipo_data, ipo])
 
     ipo_history_data['updated_on'] = pd.to_datetime(ipo_history_data['updated_on'])
-    # six_months_prior = now - relativedelta(months=6)
-    # ipo_history_data = ipo_history_data[(ipo_history_data['updated_on'] >= six_months_prior) & (ipo_history_data['updated_on'] <= now)]
-    # ipo_history_data = ipo_history_data.sort_values(by='updated_on').drop_duplicates(subset='id', keep='last')
+    six_months_prior = now - relativedelta(months=6)
+    ipo_history_data = ipo_history_data[(ipo_history_data['updated_on'] >= six_months_prior) & (ipo_history_data['updated_on'] <= now)]
+    ipo_history_data = ipo_history_data.sort_values(by='updated_on').drop_duplicates(subset='ticker_code', keep='last')
     ipo_history_data.to_csv("ipo.csv",index = False)
 
     ipo.drop(columns=['updated_on'], inplace=True)
