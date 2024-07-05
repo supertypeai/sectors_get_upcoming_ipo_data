@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 import json
 import sys
 import ssl
@@ -71,7 +72,8 @@ result = {
     "number_of_shares_offered" : [],
     "percent_of_total_shares": [],
     "participant_admin": [],
-    "underwriter": []
+    "underwriter": [],
+    "updated_on": [],
 }
 
 try:
@@ -107,6 +109,8 @@ try:
         result["percent_of_total_shares"].append(float(company_info['% of Total Shares']))
         result["participant_admin"].append(company_info['Participant Admin'])
         result["underwriter"].append(company_info['Underwriter(s)'])
+        now = datetime.now()
+        result["updated_on"].append(now.strftime("%Y-%m-%d %H:%M:%S"))
 
     ipo = pd.DataFrame(result)
     ipo['number_of_shares_offered'] = ipo['number_of_shares_offered'].str.replace(' Lot', '').str.replace(',', '', regex=True).astype(float)
@@ -114,8 +118,19 @@ try:
     ipo['company_overview'] = ipo['company_overview_id'].apply(translate_to_english)
     ipo['line_of_business'] = ipo['line_of_business_id'].apply(translate_to_english)
     ipo.drop(columns=['line_of_business_id','company_overview_id'], inplace=True)
-    ipo = ipo[['ticker_code','company','book_building_period','book_building_price_range','sector','sub_sector','line_of_business','company_overview','address','website','number_of_shares_offered','percent_of_total_shares','participant_admin','underwriter']]
-    ipo.to_csv("ipo.csv",index = False)
+    ipo = ipo[['updated_on','ticker_code','company','book_building_period','book_building_price_range','sector','sub_sector','line_of_business','company_overview','address','website','number_of_shares_offered','percent_of_total_shares','participant_admin','underwriter']]
+
+    existing_ipo_data = pd.read_csv('https://raw.githubusercontent.com/supertypeai/sectors_get_upcoming_ipo_data/main/ipo.csv')
+    ipo_history_data = pd.concat([existing_ipo_data, ipo])
+
+    ipo_history_data['updated_on'] = pd.to_datetime(ipo_history_data['updated_on'])
+    six_months_prior = now - relativedelta(months=6)
+    ipo_history_data = ipo_history_data[(ipo_history_data['updated_on'] >= six_months_prior) & (ipo_history_data['updated_on'] <= now)]
+    ipo_history_data = ipo_history_data.sort_values(by='updated_on').drop_duplicates(subset='ticker_code', keep='last')
+    ipo_history_data.to_csv("ipo.csv",index = False)
+
+    ipo.drop(columns=['updated_on'], inplace=True)
+
     upcoming_ipo_json = ipo.to_dict(orient='records')
 
 except Exception as e:
