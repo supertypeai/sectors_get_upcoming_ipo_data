@@ -76,50 +76,43 @@ result = {
     "updated_on": [],
 }
 
-url = f'https://e-ipo.co.id/en/ipo/index?per-page=&query=&sort=-updated_at&status_id=2&view=list'
-with urllib.request.urlopen(url) as response:
-    html = response.read()
-    print(html)
-soup = BeautifulSoup(html, 'html.parser')
+try:
+    url = f'https://e-ipo.co.id/en/ipo/index?per-page=&query=&sort=-updated_at&status_id=5&view=list'
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        print(html)
+    soup = BeautifulSoup(html, 'html.parser')
+    names = []
+    names_class = soup.find_all(class_="margin-left10 colorwhite")
+    for name in names_class:
+        company_name, symbol = name.get_text().replace(" Sharia", "").replace(")", "").split(' (')
+        result["ticker_code"].append(symbol.replace("Closed", "").replace("Book Building",""))
+        result["company"].append(company_name)
+    notopmargins = soup.find_all("p", class_="notopmargin")
+    nobottommargins = soup.find_all(class_="nobottommargin")
+    for top, bottom in zip(notopmargins, nobottommargins):
+        if bottom.get_text() == "Sector": result["sector"].append(top.get_text())
+        elif bottom.get_text() == "Book Building Period": result["book_building_period"].append(top.get_text())
+        elif bottom.get_text() == "Book Building Price Range": result["book_building_price_range"].append(top.get_text())
+        elif bottom.get_text() == "Stock Offered": result["number_of_shares_offered"].append(top.get_text())
+    buttons = soup.find_all(class_="button button-3d button-small notopmargin button-rounded button-dirtygreen")
+    for button in buttons:
+        href = button.get("href")
+        new_url = f"https://e-ipo.co.id{href}"
+        company_info = extract_company_info(new_url)
+        print(company_info)
+        result["sub_sector"].append(company_info['Subsector'])
+        result["line_of_business_id"].append(company_info['Line Of Business'])
+        result["company_overview_id"].append(company_info['Company Overview'])
+        result["address"].append(company_info['Address'])
+        result["website"].append(company_info['Website'])
+        result["percent_of_total_shares"].append(float(company_info['% of Total Shares']))
+        result["participant_admin"].append(company_info['Participant Admin'])
+        result["underwriter"].append(company_info['Underwriter(s)'])
+        now = datetime.now()
+        result["updated_on"].append(now.strftime("%Y-%m-%d %H:%M:%S"))
 
-names = []
-names_class = soup.find_all(class_="margin-left10 colorwhite")
-for name in names_class:
-    company_name, symbol = name.get_text().replace("Sharia", "").replace(")", "").split(' (')
-    result["ticker_code"].append(symbol.replace("Closed", "").replace("Book Building",""))
-    result["company"].append(company_name)
-
-notopmargins = soup.find_all("p", class_="notopmargin")
-nobottommargins = soup.find_all(class_="nobottommargin")
-for top, bottom in zip(notopmargins, nobottommargins):
-    if bottom.get_text() == "Sector": result["sector"].append(top.get_text())
-    elif bottom.get_text() == "Book Building Period": result["book_building_period"].append(top.get_text())
-    elif bottom.get_text() == "Book Building Price Range": result["book_building_price_range"].append(top.get_text())
-    elif bottom.get_text() == "Stock Offered": result["number_of_shares_offered"].append(top.get_text())
- 
-# click details
-buttons = soup.find_all(class_="button button-3d button-small notopmargin button-rounded button-dirtygreen")
-for button in buttons:
-    href = button.get("href")
-    new_url = f"https://e-ipo.co.id{href}"
-    company_info = extract_company_info(new_url)
-    print(company_info)
-    result["sub_sector"].append(company_info['Subsector'])
-    result["line_of_business_id"].append(company_info['Line Of Business'])
-    result["company_overview_id"].append(company_info['Company Overview'])
-    result["address"].append(company_info['Address'])
-    result["website"].append(company_info['Website'])
-    result["percent_of_total_shares"].append(float(company_info['% of Total Shares']))
-    result["participant_admin"].append(company_info['Participant Admin'])
-    result["underwriter"].append(company_info['Underwriter(s)'])
-    now = datetime.now()
-    result["updated_on"].append(now.strftime("%Y-%m-%d %H:%M:%S"))
-
-ipo = pd.DataFrame(result)
-
-if ipo.empty:
-    print("There's no upcoming ipo")
-else:
+    ipo = pd.DataFrame(result)
     ipo['number_of_shares_offered'] = ipo['number_of_shares_offered'].str.replace(' Lot', '').str.replace(',', '', regex=True).astype(float)
     ipo['book_building_price_range'] = ipo['book_building_price_range'].str.replace('IDR', '').str.replace("\xa0", "").str.replace(',', '', regex=True).astype(str)
     ipo['company_overview'] = ipo['company_overview_id'].apply(translate_to_english)
@@ -140,5 +133,10 @@ else:
 
     upcoming_ipo_json = ipo.to_dict(orient='records')
 
-    with open('upcoming_ipo.json', 'w') as json_file:
-        json.dump(upcoming_ipo_json, json_file, indent=4)
+except Exception as e:
+    print(f"An exception occurred: {str(e)}")
+    upcoming_ipo_json = []
+
+
+with open('upcoming_ipo.json_2', 'w') as json_file:
+    json.dump(upcoming_ipo_json, json_file, indent=4)

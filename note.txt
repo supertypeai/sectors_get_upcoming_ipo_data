@@ -1,4 +1,5 @@
 version 1 - sekarang harus login + captcha
 version 2 - working in local using Selenium, not working in github action
 version 3 - scraper for new listing (working)
-main - scraper for upcoming ipo
+version 4 - scraper for upcoming ipo (working)
+main - scraper for upcoming ipo (not using try and except so the pipeline will break if there's any error, so we will be notified and can run in manually)
