@@ -175,4 +175,4 @@ if __name__ == '__main__':
             
     except Exception as e:
         logging.info(f'Program finished with error: {str(e)}')
-        print(f"Error: {str(e)}")
+        raise Exception(f"Error: {str(e)}")
