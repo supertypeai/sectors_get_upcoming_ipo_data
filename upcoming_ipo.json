@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "ticker_code": "BOAT",
+        "company": "PT NEWPORT MARINE SERVICES TBK",
+        "book_building_period": "21 Oct 2024 - 25 Oct 2024",
+        "book_building_price_range": "100 - 120",
+        "sector": "Energy ",
+        "sub_sector": "Oil, Gas & Coal Equipment & Services",
+        "line_of_business": "Rent and rent a ship to support offshore activities",
+        "company_overview": "The company is engaged in shipping for offshore activities with a focus on the oil and gas industry. The Company provides ship rental services, both its own ship which is an anchor handling tug and supply vessels and crew / utility vessels, as well as rental ships according to customer needs., In the current oil and gas industry, various kinds of ships are used to support offshore operations . Good for cargo transportation, transfer of rigs, surveys, or other special tasks. The company has knowledge and relationships to be able to provide the right ship to meet the needs of its customers. In addition to ships with their own ownership, the Company also has relationships with tugs, AHTS, AHT, PSV, Oil, Oil, crew ships, and other ships. The company has 6 its own vessels consisting of 4 crew / utility vessels and 2 anchor Handling Tug Supply (AHTS).",
+        "address": "Thamrin Residences - Office Park Unit C18\nThamrin Boulevard (Kebon Kacang Raya)\nJakarta Pusat, 10230\nTelepon +6221 23579928\nFax +6221 23579927",
+        "website": "https://nms-ina.com/",
+        "number_of_shares_offered": 10004800.0,
+        "percent_of_total_shares": 28.57,
+        "participant_admin": "OD - BRI DANAREKSA SEKURITAS",
+        "underwriter": "OD - BRI DANAREKSA SEKURITAS"
+    }
+]
