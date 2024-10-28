@@ -2,3 +2,5 @@
 2024-10-14 07:37:27,131 - INFO: Program finished with error: Error fetching data: <urlopen error Tunnel connection failed: 407 Auth Failed (code: ip_forbidden)>
 2024-10-21 04:33:19,826 - INFO: Program started
 2024-10-21 04:33:28,155 - INFO: Finish scrape 1 upcoming ipo data
+2024-10-28 00:55:34,601 - INFO: Program started
+2024-10-28 00:55:41,009 - INFO: Finish scrape 0 upcoming ipo data
