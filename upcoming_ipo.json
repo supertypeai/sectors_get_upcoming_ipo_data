@@ -1,5 +1,21 @@
 [
     {
+        "ticker_code": "DGWG",
+        "company": "PT Delta Giri Wacana Tbk",
+        "book_building_period": "02 Dec 2024 - 16 Dec 2024",
+        "book_building_price_range": "420 - 620",
+        "sector": "Basic Materials",
+        "sub_sector": "Agricultural Chemicals",
+        "line_of_business": "Big trading of fertilizers and agrochemical products",
+        "company_overview": "The company was first established in 2001 as a company engaged in agro -field. The establishment was marked by the start of marketing pesticide products with Supremo brands. After previously only carrying out the company's sales activities increasing its activities with bottling activities in 2005 and re-upgraded with mixing and bottling activities in new production facilities located in Jababeka III, Bekasi which began in 2009. In line with a good market response to products The Company, the Company felt the need to establish an internal distribution channel business activity in 2010 as a form of strengthening supply chains and efforts to reach a wider market in all regions of Indonesia. In 2011, the Company began to spread its business wings in the agro field Input by starting to trade imported NPK fertilizer. Back to get a positive response from the market, in 2018 the Company began producing its own imported NPK fertilizer which was marked by the establishment of production facilities in Gresik, East Java. Agro Input Business Development also continues to be carried out by the Company in order to complete the business pillars and create one stop solution in the field of agro -input by entering the agricultural equipment business through the sale of sprayers and mulch which began in 2019. In 2020, the Company founded the mulch production facility located In Cikande, Banten, in order to reduce the full dependence of the company's production activities with raw materials/active imported materials for its agrochemical products, in 2023 the company began to build a carbamasi factory in Cikande, Banten. Not only to meet internal needs, the production capacity prepared later is also to meet export needs.",
+        "address": "Gedung DGW Group\nJl. Agung Karya VI, Kav. A, No.7, Kelurahan Papanggo, Kecamatan Tanjung Priok, \nKota Administrasi Jakarta Utara 14340, Provinsi DKI Jakarta\n",
+        "website": "https://www.dgw.co.id/",
+        "number_of_shares_offered": 16666667.0,
+        "percent_of_total_shares": 25.0,
+        "participant_admin": "OD - BRI DANAREKSA SEKURITAS",
+        "underwriter": "OD - BRI DANAREKSA SEKURITAS, AH - SHINHAN SEKURITAS INDONESIA, IF - SAMUEL SEKURITAS  INDONESIA"
+    },
+    {
         "ticker_code": "MDIY",
         "company": "PT Daya Intiguna Yasa Tbk",
         "book_building_period": "25 Nov 2024 - 03 Dec 2024",
