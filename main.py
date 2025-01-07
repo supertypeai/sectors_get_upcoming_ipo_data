@@ -1,18 +1,19 @@
+from bs4 import BeautifulSoup
 import pandas as pd
+import numpy as np
 from datetime import datetime
-import os
-from dotenv import load_dotenv
-load_dotenv()
-import os
-from supabase import create_client
+from dateutil.relativedelta import relativedelta
+import json
+import sys
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 import urllib.request
-from bs4 import BeautifulSoup
 import translators as ts
-
+import os
 import logging
 from imp import reload
+from dotenv import load_dotenv
+load_dotenv()
 
 def initiate_logging(LOG_FILENAME):
     reload(logging)
@@ -21,19 +22,20 @@ def initiate_logging(LOG_FILENAME):
     logging.basicConfig(filename=LOG_FILENAME,level=logging.INFO, format=formatLOG)
     logging.info('Program started')
 
+def convert_date(date_str):
+    date_object = datetime.strptime(date_str, "%d %b %Y")
+    return date_object.strftime("%Y-%m-%d")
+
 def extract_company_info(new_url):
     try:
         with urllib.request.urlopen(new_url) as response:
             html_detail = response.read()
         soup_detail = BeautifulSoup(html_detail, 'html.parser')
         company_info_divs = soup_detail.find("div", class_="panel-body panel-scroll")
-        ipo_detail_divs = soup_detail.find("div", class_="list-group")
 
         data = {}
         current_key = None
         current_value = []
-        
-        data['company_name'] = soup_detail.find("h1", class_="panel-title").text
 
         for element in company_info_divs.find_all(['h5', 'p']):
             if element.name == 'h5':
@@ -47,162 +49,130 @@ def extract_company_info(new_url):
                     current_value.append(br_text)
                 else:
                     current_value.append(element.text)
-        
+
         if current_key is not None:
             data[current_key] = ', '.join(current_value)
-                    
-        for element in ipo_detail_divs.find_all(['h5', 'p']):
-            if element.name == "h5":
-                    current_key = element.text
-            if element.name == "p":
-                if current_key == "Book Building": 
-                    if "IDR" in element.text:
-                        data["book_building_lower_bound"] = int(element.text.split(" - ")[0].split("IDR\xa0")[1].replace(",","").replace(".",""))
-                        data["book_building_upper_bound"] = int(element.text.split(" - ")[1].split("IDR\xa0")[1].replace(",","").replace(".",""))
-                    else:
-                        data["book_building_start_date"] = datetime.strptime(element.text.split(" - ")[0], "%d %b %Y").strftime("%Y-%m-%d")
-                        data["book_building_end_date"] = datetime.strptime(element.text.split(" - ")[1], "%d %b %Y").strftime("%Y-%m-%d")
-                if current_key == "Offering":
-                    if "IDR" in element.text:
-                        data["offering_price"] = int(element.text.split("IDR\xa0")[1].replace(",","").replace(".",""))
-                    else:
-                        data["offering_start_date"] = datetime.strptime(element.text.split(" - ")[0], "%d %b %Y").strftime("%Y-%m-%d")
-                        data["offering_end_date"] = datetime.strptime(element.text.split(" - ")[1], "%d %b %Y").strftime("%Y-%m-%d")
-                if current_key == "Distribution":
-                    data["distribution_date"] = datetime.strptime(element.text, "%d %b %Y").strftime("%Y-%m-%d")
-                if current_key == "Prospectus":
-                    data["prospectus_url"] = "https://e-ipo.co.id" + element.select("a[data-content='Download Prospectus']")[0].get("href")
-                if current_key == "Additional Information":
-                    data["additional_info_url"] = "https://e-ipo.co.id" + element.select("a[data-content='Download Additional Information']")[0].get("href")
 
         return data
     except Exception as e:
         print(f"Error extracting company info: {str(e)}")
         return {}
 
+def translate_to_english(text):
+    translated_text = ts.translate_text(text, translator="google", from_language='id',to_language='en')
+    return translated_text
+
 if __name__ == '__main__':
     LOG_FILENAME = 'scraper.log'
     initiate_logging(LOG_FILENAME)
 
-    PROXY = os.getenv("PROXY")
-    SUPABASE_URL = os.getenv("SUPABASE_URL")
-    SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-
-    proxy_support = urllib.request.ProxyHandler({'http': PROXY,'https': PROXY})
-    opener = urllib.request.build_opener(proxy_support)
-    urllib.request.install_opener(opener)
-    supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-
-    result = {
-        "symbol" : [],
-        "ipo_price" : [],
-        "underwriter": [],
-        "updated_on": [],
-        "href" : [],
-    }
-    
-    ipo_details = {
-        "symbol": [],
-        "company_name": [],
-        "shares_offered": [],
-        "percent_total_shares":[],
-        "book_building_start_date":[],
-        "book_building_end_date":[],
-        "book_building_lower_bound":[],
-        "book_building_upper_bound":[],
-        "offering_start_date":[],
-        "offering_end_date":[],
-        "offering_price":[],
-        "distribution_date":[],
-        "prospectus_url":[],
-        "additional_info_url":[],
-        "updated_at": []
-    }
-
     try:
-        url = f'https://e-ipo.co.id/en/ipo/index?page=1&per-page=&query=&sort=-updated_at&status_id=3&view=list'
-        with urllib.request.urlopen(url) as response:
-            html = response.read()
-        soup = BeautifulSoup(html, 'html.parser')
-        names = []
-        names_class = soup.find_all(class_="margin-left10 colorwhite")
-        for name in names_class:
-            company_name, symbol = name.get_text().replace(" Sharia", "").replace(")", "").split(' (')
-            result["symbol"].append(symbol.replace("Offering", "").replace("Book Building","") + ".JK")
-        notopmargins = soup.find_all("p", class_="notopmargin")
-        nobottommargins = soup.find_all(class_="nobottommargin")
-        for top, bottom in zip(notopmargins, nobottommargins):
-            if bottom.get_text() == "Final Price": result["ipo_price"].append(top.get_text().replace("IDR\xa0", ""))
-        buttons = soup.find_all(class_="button button-3d button-small notopmargin button-rounded button-dirtygreen")
-        for button in buttons:
-            result["href"].append(button.get("href"))
-        
-        # try:
-        #     company_ipo_details_symbol = supabase.table('idx_ipo_details').select('symbol').execute().data
-        #     company_ipo_details_symbol = [d['symbol'] for d in company_ipo_details_symbol]
-        #     company_ipo_price_null = supabase.table('idx_company_profile').select('symbol, company_name').filter('ipo_price', 'is', 'null').execute().data
-        #     company_symbols_null_ipo = {d['symbol']: d['company_name'] for d in company_ipo_price_null}
-        # except Exception as e:
-        #     print(f"An exception when supabase: {str(e)}")
-            
         try:
-            for symbol in result["symbol"]:
-                index = result["symbol"].index(symbol)
-                now = datetime.now()
-                
-                print("Retrieving data for: ", symbol)
-                new_url = f"https://e-ipo.co.id{result['href'][index]}"
-                company_info = extract_company_info(new_url)
-                
-                # if symbol not in company_ipo_details_symbol:
-                ipo_details["symbol"].append(symbol)
-                ipo_details["company_name"].append(company_info['company_name'])
-                ipo_details["shares_offered"].append(company_info['Number of shares offered'].replace(" shares", "").replace(",", ""))
-                ipo_details["percent_total_shares"].append(float(company_info['% of Total Shares']) / 100)
-                ipo_details["book_building_start_date"].append(company_info["book_building_start_date"])
-                ipo_details["book_building_end_date"].append(company_info["book_building_end_date"])
-                ipo_details["book_building_lower_bound"].append(int(company_info["book_building_lower_bound"]))
-                ipo_details["book_building_upper_bound"].append(int(company_info["book_building_upper_bound"]))
-                ipo_details["offering_start_date"].append(company_info["offering_start_date"])
-                ipo_details["offering_end_date"].append(company_info["offering_end_date"])
-                ipo_details["offering_price"].append(int(company_info["offering_price"]))
-                ipo_details["distribution_date"].append(company_info["distribution_date"])
-                ipo_details["prospectus_url"].append(company_info["prospectus_url"])
-                ipo_details["additional_info_url"].append(company_info["additional_info_url"])
-                ipo_details["updated_at"].append(now.strftime("%Y-%m-%d %H:%M:%S"))
-                print(ipo_details)
+            proxy = os.environ.get("proxy")
+
+            proxy_support = urllib.request.ProxyHandler({'http': proxy,'https': proxy})
+            opener = urllib.request.build_opener(proxy_support)
+            urllib.request.install_opener(opener)
         except Exception as e:
-            print(f"An exception when retrieve data: {str(e)}")
-            logging.info(f"An exception when retrieve data: {str(e)}")
+            raise Exception("Error setting up proxy: {str(e)}")
             
-        for symbol, company_name, shares_offered, percent_total_shares, book_building_start_date, book_building_end_date, book_building_lower_bound, book_building_upper_bound, offering_start_date, offering_end_date, offering_price, distribution_date, prospectus_url, additional_info_url, updated_at in zip(ipo_details["symbol"], ipo_details['company_name'], ipo_details["shares_offered"], ipo_details["percent_total_shares"], ipo_details["book_building_start_date"], ipo_details["book_building_end_date"], ipo_details["book_building_lower_bound"], ipo_details["book_building_upper_bound"], ipo_details["offering_start_date"], ipo_details["offering_end_date"], ipo_details["offering_price"], ipo_details["distribution_date"], ipo_details["prospectus_url"], ipo_details["additional_info_url"], ipo_details["updated_at"]):
-            try:
-                supabase.table('idx_upcoming_ipo').upsert({
-                    'symbol': symbol,
-                    'company_name': company_name,
-                    'shares_offered': shares_offered,
-                    'percent_total_shares': percent_total_shares,
-                    'book_building_start_date': book_building_start_date,
-                    'book_building_end_date': book_building_end_date,
-                    'book_building_lower_bound': book_building_lower_bound,
-                    'book_building_upper_bound': book_building_upper_bound,
-                    'offering_start_date': offering_start_date,
-                    'offering_end_date': offering_end_date,
-                    'offering_price': offering_price,
-                    'distribution_date': distribution_date,
-                    'prospectus_url': prospectus_url,
-                    'additional_info_url': additional_info_url,
-                    'updated_at': updated_at
-                }).execute()
-                print("IPO detail updated successfully for: ", symbol)
-                logging.info(f"IPO detail updated successfully for: {symbol}")
-            except Exception as e:
-                print(f"Error updating data: {e}")
-                logging.info(f"Error updating data: {e}")
-            
+        result = {
+            "ticker_code" : [],
+            "company" : [],
+            "book_building_period" : [],
+            "book_building_price_range" : [],
+            "sector" : [],
+            "sub_sector":[],
+            "line_of_business_id":[],
+            "company_overview_id":[],
+            "address": [],
+            "website": [],
+            "number_of_shares_offered" : [],
+            "percent_of_total_shares": [],
+            "participant_admin": [],
+            "underwriter": [],
+            "updated_on": [],
+        }
 
+        try:
+            url = f'https://e-ipo.co.id/en/ipo/index?per-page=&query=&sort=-updated_at&status_id=2&view=list'
+            with urllib.request.urlopen(url) as response:
+                html = response.read()
+                print(html)
+            soup = BeautifulSoup(html, 'html.parser')
+        except Exception as e:
+            raise Exception(f"Error fetching data: {str(e)}")
+
+        try:
+            names = []
+            names_class = soup.find_all(class_="margin-left10 colorwhite")
+            for name in names_class:
+                company_name, symbol = name.get_text().replace("Sharia", "").replace(")", "").split(' (')
+                result["ticker_code"].append(symbol.replace("Closed", "").replace("Book Building",""))
+                result["company"].append(company_name)
+
+            notopmargins = soup.find_all("p", class_="notopmargin")
+            nobottommargins = soup.find_all(class_="nobottommargin")
+            for top, bottom in zip(notopmargins, nobottommargins):
+                if bottom.get_text() == "Sector": result["sector"].append(top.get_text())
+                elif bottom.get_text() == "Book Building Period": result["book_building_period"].append(top.get_text())
+                elif bottom.get_text() == "Book Building Price Range": result["book_building_price_range"].append(top.get_text())
+                elif bottom.get_text() == "Stocks Offered": result["number_of_shares_offered"].append(top.get_text())
+        except Exception as e:
+            raise Exception(f"Error extracting data: {str(e)}")
+        
+        try:
+            # click details
+            buttons = soup.find_all(class_="button button-3d button-small notopmargin button-rounded button-dirtygreen")
+            for button in buttons:
+                href = button.get("href")
+                new_url = f"https://e-ipo.co.id{href}"
+                company_info = extract_company_info(new_url)
+                print(company_info)
+                result["sub_sector"].append(company_info['Subsector'])
+                result["line_of_business_id"].append(company_info['Line Of Business'])
+                result["company_overview_id"].append(company_info['Company Overview'])
+                result["address"].append(company_info['Address'])
+                result["website"].append(company_info['Website'])
+                result["percent_of_total_shares"].append(float(company_info['% of Total Shares']))
+                result["participant_admin"].append(company_info['Participant Admin'])
+                result["underwriter"].append(company_info['Underwriter(s)'])
+                now = datetime.now()
+                result["updated_on"].append(now.strftime("%Y-%m-%d %H:%M:%S"))
+            ipo = pd.DataFrame(result)
+        except Exception as e:
+            raise Exception(f"Error retrieve company: {str(e)}")
+
+        try:
+            if ipo.empty:
+                print("There's no upcoming ipo")
+            else:
+                ipo['number_of_shares_offered'] = ipo['number_of_shares_offered'].str.replace(' Lot', '').str.replace(',', '', regex=True).astype(float)
+                ipo['book_building_price_range'] = ipo['book_building_price_range'].str.replace('IDR', '').str.replace("\xa0", "").str.replace(',', '', regex=True).astype(str)
+                ipo['company_overview'] = ipo['company_overview_id'].apply(translate_to_english)
+                ipo['line_of_business'] = ipo['line_of_business_id'].apply(translate_to_english)
+                ipo.drop(columns=['line_of_business_id','company_overview_id'], inplace=True)
+                ipo = ipo[['updated_on','ticker_code','company','book_building_period','book_building_price_range','sector','sub_sector','line_of_business','company_overview','address','website','number_of_shares_offered','percent_of_total_shares','participant_admin','underwriter']]
+
+                existing_ipo_data = pd.read_csv('https://raw.githubusercontent.com/supertypeai/sectors_get_upcoming_ipo_data/main/ipo.csv')
+                ipo_history_data = pd.concat([existing_ipo_data, ipo])
+
+                ipo_history_data['updated_on'] = pd.to_datetime(ipo_history_data['updated_on'])
+                six_months_prior = now - relativedelta(months=6)
+                ipo_history_data = ipo_history_data[(ipo_history_data['updated_on'] >= six_months_prior) & (ipo_history_data['updated_on'] <= now)]
+                ipo_history_data = ipo_history_data.sort_values(by='updated_on').drop_duplicates(subset='ticker_code', keep='last')
+                ipo_history_data.to_csv("ipo.csv",index = False)
+
+                ipo.drop(columns=['updated_on'], inplace=True)
+
+                upcoming_ipo_json = ipo.to_dict(orient='records')
+
+                with open('upcoming_ipo.json', 'w') as json_file:
+                    json.dump(upcoming_ipo_json, json_file, indent=4)
+        except Exception as e:
+            raise Exception(f"Error processing data: {str(e)}")
+        logging.info(f"Finish scrape {len(ipo['ticker_code'])} upcoming ipo data")
+            
     except Exception as e:
-        logging.info(f"An exception occurred: {str(e)}")
-        raise Exception(f"An exception occurred: {str(e)}")
-
-    logging.info(f"Finish scrape {len(result['symbol'])} closed ipo data")
+        logging.info(f'Program finished with error: {str(e)}')
+        raise Exception(f"Error: {str(e)}")

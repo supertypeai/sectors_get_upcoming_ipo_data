@@ -1,26 +1,2 @@
 2024-10-14 07:37:26,086 - INFO: Program started
 2024-10-14 07:37:27,131 - INFO: Program finished with error: Error fetching data: <urlopen error Tunnel connection failed: 407 Auth Failed (code: ip_forbidden)>
-2024-10-21 04:33:19,826 - INFO: Program started
-2024-10-21 04:33:28,155 - INFO: Finish scrape 1 upcoming ipo data
-2024-10-28 00:55:34,601 - INFO: Program started
-2024-10-28 00:55:41,009 - INFO: Finish scrape 0 upcoming ipo data
-2024-11-04 00:54:56,935 - INFO: Program started
-2024-11-04 00:55:06,235 - INFO: Finish scrape 0 upcoming ipo data
-2024-11-11 00:53:28,798 - INFO: Program started
-2024-11-11 00:53:38,944 - INFO: Finish scrape 0 upcoming ipo data
-2024-11-18 00:57:09,985 - INFO: Program started
-2024-11-18 00:57:21,343 - INFO: Finish scrape 1 upcoming ipo data
-2024-11-25 00:57:08,399 - INFO: Program started
-2024-11-25 00:57:18,734 - INFO: Finish scrape 1 upcoming ipo data
-2024-12-02 00:59:01,052 - INFO: Program started
-2024-12-02 01:00:10,950 - INFO: Finish scrape 2 upcoming ipo data
-2024-12-09 00:59:33,804 - INFO: Program started
-2024-12-09 00:59:44,349 - INFO: Finish scrape 1 upcoming ipo data
-2024-12-16 01:00:04,390 - INFO: Program started
-2024-12-16 01:00:22,757 - INFO: Finish scrape 4 upcoming ipo data
-2024-12-23 00:54:40,587 - INFO: Program started
-2024-12-23 00:56:14,259 - INFO: Finish scrape 3 upcoming ipo data
-2024-12-30 00:55:08,979 - INFO: Program started
-2024-12-30 00:55:11,286 - INFO: Finish scrape 0 upcoming ipo data
-2025-01-06 00:56:01,367 - INFO: Program started
-2025-01-06 00:56:03,139 - INFO: Finish scrape 0 upcoming ipo data
