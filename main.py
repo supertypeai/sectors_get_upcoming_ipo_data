@@ -146,6 +146,8 @@ if __name__ == '__main__':
         try:
             if ipo.empty:
                 print("There's no upcoming ipo")
+                with open("upcoming_ipo.json", "w") as json_file:
+                    json.dump([], json_file, indent=4)
             else:
                 ipo['number_of_shares_offered'] = ipo['number_of_shares_offered'].str.replace(' Lot', '').str.replace(',', '', regex=True).astype(float)
                 ipo['book_building_price_range'] = ipo['book_building_price_range'].str.replace('IDR', '').str.replace("\xa0", "").str.replace(',', '', regex=True).astype(str)
