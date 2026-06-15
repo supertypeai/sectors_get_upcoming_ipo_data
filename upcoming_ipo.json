@@ -1,1 +1,18 @@
-[]
+[
+    {
+        "ticker_code": "JELI",
+        "company": "PT Niramas Utama Tbk",
+        "book_building_period": "15 Jun 2026 - 22 Jun 2026",
+        "book_building_price_range": "900 - 1120",
+        "sector": "Consumer Non-Cyclicals",
+        "sub_sector": "Processed Foods",
+        "line_of_business": "Engaged in the Food and Dessert Beverage Industry",
+        "company_overview": "PT Niramas Utama Tbk (\"Company\" or \"JELI\"), which is more widely known through its main trademark \"INACO\", is a pioneer and market leader in the healthy food and dessert industry based on coconut and natural fiber in Indonesia which has been established since 1990. For more than 35 years, the Company has consistently strengthened its position as a top of mind brand through its high commitment to providing delicious, safe and highly nutritious products for families, with superior product lines that include Nata de Coco in various flavors, mini jellies, puddings, to innovative ready-to-drink beverage products such as I'm Coco and Jelly Drink. The Company differentiates itself through the use of high quality natural raw materials, including pure coconut milk which is processed through strict international food safety standards and a final pasteurization stage to ensure product quality and uses food additives that comply with food safety regulations. The Company's operational strength is supported by world-class manufacturing facilities and an extensive distribution network covering 251 domestic distribution points, as well as success in penetrating strategic international markets such as Japan, India, China, Thailand, Australia, Canada and the United States. Through a focus on sustainable innovation and development of natural-based products such as Aloe vera and konnyaku, the Company continues to transform to capture opportunities from the global healthy lifestyle megatrend driven by the Millennial Generation and Gen Z, while providing a positive social impact by supporting local farmers as the main raw material supplier partners. With various prestigious awards already achieved, the Company is committed to continuing to improve its research and development capabilities through the Ideas Bank system and expanding its global footprint to Africa and Europe by 2026, to ensure resilient and sustainable business growth in the future.",
+        "address": "Jl. Bekasi Tambun KM.39.5, Jatimulya, Kecamatan Tambun Selatan, Kabupaten Bekasi\nJawa Barat, 17510 - Indonesia",
+        "website": "https://inacofood.com/",
+        "number_of_shares_offered": 3500000.0,
+        "percent_of_total_shares": 25.93,
+        "participant_admin": "AZ - SUCOR SEKURITAS",
+        "underwriter": "AZ - SUCOR SEKURITAS"
+    }
+]
